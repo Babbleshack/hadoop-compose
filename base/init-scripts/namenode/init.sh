@@ -2,6 +2,7 @@
 /etc/init.d/ssh start
 cp -fv opt/workers/hdfs_workers $HADOOP_HOME/etc/hadoop/workers
 $HADOOP_HOME/bin/hdfs namenode -format 
+$HADOOP_HOME/bin/hdfs --daemon start namenode  
 $HADOOP_HOME/sbin/start-dfs.sh &
 while true
 do

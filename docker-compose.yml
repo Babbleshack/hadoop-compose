@@ -5,6 +5,7 @@ services:
   namenode:
     container_name: namenode
     image: hadoop:base
+    hostname: namenode
     restart: unless-stopped
     command: "/opt/init_container.d/namenode/init.sh"
     depends_on:
@@ -19,6 +20,7 @@ services:
   datanode:
     container_name: datanode-0
     image: hadoop:base
+    hostname: datanode-0
     restart: unless-stopped
     command: "/opt/init_container.d/datanode/init.sh"
     build:
@@ -33,9 +35,11 @@ services:
   resourcemanager:
     container_name: resourcemanager
     image: hadoop:base
+    hostname: resourcemanager
     restart: unless-stopped
     command: "/opt/init_container.d/resourcemanager/init.sh"
     depends_on:
+      - namenode
       - nodemanager
     build:
       context: base
@@ -46,11 +50,14 @@ services:
       - 8031:8031 #yarn.resourcemanager.resource-tracker.address
       - 8030:8030 #yarn.resourcemanager.scheduler.address
       - 8033:8033 #yarn.resourcemanager.admin.address
+      - 10200:10200 #yarn.timeline-service.address
+      - 8188:8188 #yarn.timeline-service.webapp.address
       - 19888:19888 #mapreduce.jobhistory.webapp.address
 
   nodemanager:
     container_name: nodemanager-0
     image: hadoop:base
+    hostname: nodemanager-0
     restart: unless-stopped
     command: "/opt/init_container.d/nodemanager/init.sh"
     build:

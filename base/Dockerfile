@@ -51,13 +51,18 @@ RUN mkdir -pv ${HADOOP_DATA_NODE_DATA} \
         && mkdir -pv ${HADOOP_NAME_NODE_DATA} \
         && mkdir -pv ${HADOOP_TEMPDIR} \
         && mkdir -pv ${INIT_SCRIPT_DIR} 
-        #&& mkdir -pv /yarn-conf \
-        #&& cp -rfv /opt/hadoop/etc/hadoop /yarn-conf \
-        #&& cp -rfv /opt/yarn-conf/* /yarn-conf
+
+#CREATE LOCAL AMRM YARN CONFS
+RUN mkdir -pv /yarn-conf \
+        && cp -rfv /opt/hadoop/etc/hadoop /yarn-conf 
+
+#COPY LOCAL YARN conf
+COPY ./common/hadoop/yarn-local.yarn-site.xml /yarn-conf/hadoop/yarn-site.xml
 
 #COPY INIT SCRIPTS
 COPY ./init-scripts ${INIT_SCRIPT_DIR}/
 COPY ./common/workers /opt/workers
+
 
 
 ##HADOOP ENVRIONMENT VARS

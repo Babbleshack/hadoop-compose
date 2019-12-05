@@ -18,6 +18,10 @@
     <value>mapreduce_shuffle</value>
   </property>
   <property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>0.0.0.0:8030</value>
+  </property>
+  <property>
     <name>yarn.resourcemanager.address</name>
     <value>resourcemanager:8032</value>
   </property>
@@ -89,7 +93,7 @@
   </property>
   <property>
     <name>yarn.timeline-service.webapp.address</name>
-    <value>0.0.0.0:8188</value>
+    <value>resourcemanager:8188</value>
   </property>
   <property>
     <name>yarn.resourcemanager.system-metrics-publisher.enabled</name>
