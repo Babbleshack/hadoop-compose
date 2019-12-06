@@ -13,34 +13,43 @@
   limitations under the License. See accompanying LICENSE file.
 -->
 <configuration>
+
+  <!-- Bindings --> 
   <property>
-    <name>mapreduceyarn.nodemanager.aux-services</name>
-    <value>mapreduce_shuffle</value>
-  </property>
-  <property>
-    <name>yarn.resourcemanager.scheduler.address</name>
-    <value>0.0.0.0:8030</value>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>resourcemanager</value>
   </property>
   <property>
     <name>yarn.resourcemanager.address</name>
     <value>resourcemanager:8032</value>
   </property>
   <property>
-    <name>yarn.resourcemanager.hostname</name>
-    <value>resourcemanager</value>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>resourcemanager:8030</value>
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.address</name>
     <value>0.0.0.0:8088</value>
   </property>
   <property>
-    <name>yarn.webapp.ui2.enable</name>
-    <value>true</value>
+    <name>yarn.timeline-service.bind-host</name>
+    <value>0.0.0.0</value>
   </property>
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
     <value>resourcemanager:8031</value>
   </property>
+
+  <property>
+    <name>mapreduceyarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+
+  <property>
+    <name>yarn.webapp.ui2.enable</name>
+    <value>true</value>
+  </property>
+
   <property>
     <name>yarn.log-aggregation-enable</name>
     <value>true</value>
@@ -49,6 +58,8 @@
     <name>yarn.nodemanager.aux-services</name>
     <value>mapreduce_shuffle</value>
   </property>
+
+  <!-- opportunistic mode -->
   <property>
     <name>yarn.resourcemanager.opportunistic-container-allocation.enabled</name>
     <value>true</value>
@@ -69,19 +80,21 @@
     <name>yarn.nodemanager.resource.detect-hardware-capabilities</name>
     <value>true</value>
   </property>
+
   <!-- Worker(memory)=8GB, Node(mem)=7GB, Container(mem)=[3,7]GB-->
   <property>
     <name>yarn.nodemanager.resource.memory-mb</name>
-    <value>7168</value>
+    <value>2048</value>
   </property>
   <property>
     <name>yarn.scheduler.minimum-allocation-mb</name>
-    <value>3584</value>
+    <value>1024</value>
   </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-mb</name>
-    <value>7168</value>
+    <value>2048</value>
   </property>
+
   <!--Timeline server -->
   <property>
     <name>yarn.timeline-service.enabled</name>
@@ -92,20 +105,12 @@
     <value>resourcemanager</value>
   </property>
   <property>
-    <name>yarn.timeline-service.webapp.address</name>
-    <value>resourcemanager:8188</value>
-  </property>
-  <property>
     <name>yarn.resourcemanager.system-metrics-publisher.enabled</name>
     <value>true</value>
   </property>
   <property>
     <name>yarn.timeline-service.generic-application-history.enabled</name>
     <value>true</value>
-  </property>
-  <property>
-    <name>yarn.timeline-service.bind-host</name>
-    <value>0.0.0.0</value>
   </property>
   <!-- Site specific YARN configuration properties -->
 </configuration>

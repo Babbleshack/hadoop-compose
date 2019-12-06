@@ -39,8 +39,10 @@ services:
     restart: unless-stopped
     command: "/opt/init_container.d/resourcemanager/init.sh"
     depends_on:
-      - namenode
-      - nodemanager
+      - "namenode"
+      - "nodemanager-0"
+      - "nodemanager-1"
+      - "nodemanager-2"
     build:
       context: base
     networks:
@@ -54,10 +56,10 @@ services:
       - 8188:8188 #yarn.timeline-service.webapp.address
       - 19888:19888 #mapreduce.jobhistory.webapp.address
 
-  nodemanager:
-    container_name: nodemanager-0
+  nodemanager-0:
+    container_name: "nodemanager-0"
     image: hadoop:base
-    hostname: nodemanager-0
+    hostname: "nodemanager-0"
     restart: unless-stopped
     command: "/opt/init_container.d/nodemanager/init.sh"
     build:
@@ -67,5 +69,31 @@ services:
     ports:
       - 8042:8042 #yarn.nodemanager.webapp.address
 
+  nodemanager-1:
+    container_name: "nodemanager-1"
+    image: hadoop:base
+    hostname: "nodemanager-1"
+    restart: unless-stopped
+    command: "/opt/init_container.d/nodemanager/init.sh"
+    build:
+      context: base
+    networks:
+      - yarn-net
+    ports:
+      - 8043:8042 #yarn.nodemanager.webapp.address
+
+
+  nodemanager-2:
+    container_name: "nodemanager-2"
+    image: hadoop:base
+    hostname: "nodemanager-2"
+    restart: unless-stopped
+    command: "/opt/init_container.d/nodemanager/init.sh"
+    build:
+      context: base
+    networks:
+      - yarn-net
+    ports:
+      - 8044:8042 #yarn.nodemanager.webapp.address
 networks:
   yarn-net:

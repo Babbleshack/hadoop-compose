@@ -13,49 +13,33 @@
   limitations under the License. See accompanying LICENSE file.
 -->
 <configuration>
+  <!-- Yarn configs -->
   <property>
     <name>mapreduceyarn.nodemanager.aux-services</name>
     <value>mapreduce_shuffle</value>
   </property>
   <property>
-	  <name>yarn.resourcemanager.webapp.address</name>
-	  <value>0.0.0.0:8088</value>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>resourcemanager</value>
   </property>
   <property>
-	  <name>yarn.resourcemanager.address</name>
-	  <value>resourcemanager:8032</value>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>localhost:8049</value>
   </property>
+
+  <!-- nm configs -->
   <property>
-          <name>yarn.resourcemanager.hostname</name>
-          <value>resourcemanager</value>
-  </property>
-  <property>
-	  <name>yarn.resourcemanager.scheduler.address</name>
-	  <value>localhost:8049</value>
-  </property>
-  <property>
-    <name>yarn.webapp.ui2.enable</name>
-    <value>true</value>
-  </property>
-  <property>
-	  <name>yarn.resourcemanager.resource-tracker.address</name>
-	  <value>resourcemanager:8031</value>
-  </property>
-  <property>
-    <name>yarn.log-aggregation-enable</name>
-    <value>true</value>
-  </property>
-  <property>
-	  <name>yarn.nodemanager.aux-services</name>
-	  <value>mapreduce_shuffle</value>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
   </property>
   <property>
     <name>yarn.resourcemanager.opportunistic-container-allocation.enabled</name>
     <value>true</value>
   </property>
+  <!-- Possibly Remove: RM Config? -->
   <property>
     <name>yarn.nodemanager.opportunistic-containers-max-queue-length</name>
-    <value>10</value>
+    <value>2</value>
   </property>
   <property>
     <name>yarn.nodemanager.distributed-scheduling.enabled</name>
@@ -66,101 +50,19 @@
     <value>true</value>
   </property>
 
-  <!--disable virtual memory-->
-  <!--
-  <property>
-    <name>yarn.nodemanager.vmem-pmem-ratio</name>
-    <value>1.1</value>
-  </property>
-  -->
-
-  <!-- Worker(memory)=8GB, Node(mem)=6GB, Container(mem)=[1,2]GB-->
+  <!-- Worker(memory)=8GB, Node(mem)=7GB, Container(mem)=[3,7]GB-->
   <property>
     <name>yarn.nodemanager.resource.memory-mb</name>
-    <value>7168</value>
+    <value>2048</value>
   </property>
   <property>
     <name>yarn.scheduler.minimum-allocation-mb</name>
-    <value>3584</value>
+    <value>1024</value>
   </property>
   <property>
     <name>yarn.scheduler.maximum-allocation-mb</name>
-    <value>7168</value>
+    <value>2048</value>
   </property>
-  <property>
-    <name>yarn.app.mapreduce.am.resource.mb</name>
-    <value>7168</value>
-  </property>
-  <!--AM 80% of mapred container-->
-  <property>
-    <name>yarn.app.mapreduce.am.command-opts</name>
-    <value>-Xmx5734m</value>
-  </property>
-
-  <!--Timeline server -->
-  <property>
-    <name>yarn.timeline-service.enabled</name>
-    <value>true</value>
-  </property>
-  <property>
-    <name>yarn.resourcemanager.system-metrics-publisher.enabled</name>
-    <value>true</value>
-  </property>
-  <property>
-    <name>yarn.timeline-service.generic-application-history.enabled</name>
-    <value>true</value>
-  </property>
-  <property>
-    <name>yarn.timeline-service.bind-host</name>
-    <value>resourcemanager</value>
-  </property>
-
-
-
-
-  <!--CGROUPS-->
-  <!--
-  <property>
-    <name>yarn.nodemanager.continer-executor.class</name>
-    <value>org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor</value>
-  </property>
-	<property>
-		<name>yarn.nodemanager.linux-container-executor.group</name>
-		<value>mapr</value>
-	</property>
-  <property>
-    <name>yarn.nodemanager.linux-container-executor.resources-handler.class</name>
-    <value>org.apache.hadoop.yarn.server.nodemanager.util.CgroupsLCEResourcesHandler</value>
-  </property>
-  <property>
-    <name>yarn.nodemanager.linux-container-executor.cgroups.hierarchy</name>
-    <value>/hadoop-yarn-cgroups</value>
-  </property> 
-  <property>
-    <name>yarn.nodemanager.linux-container-executor.cgroups.mount</name>
-    <value>true</value>
-  </property>
-  <property>
-    <name>yarn.nodemanager.linux-container-executor.cgroups.mount-path</name>
-    <value>/mycgroup</value>
-  </property>
-
-  <property>
-    <name>yarn.nodemanager.resource.percentage-physical-cpu-limit</name>
-    <value>25</value>
-  </property>
-  <property>
-    <name>yarn.nodemanager.linux-container-executor.cgroups.strict-resource-usage</name>
-    <value>true</value>
-  </property>
--->
-
-
-  
-  
-
-
 
 <!-- Site specific YARN configuration properties -->
-
 </configuration>
