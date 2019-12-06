@@ -1,6 +1,15 @@
 # HADOOP Docker-Compose
 Hadoop Yarn/HDFS inside a docker-compose manifest.
 
+
+## Commands:
+- Start Containers: `docker-compose up -d`
+- Container Status: `docker-compose ps`
+- Stop and Delete Containers: `docker-compose rm -sf`
+
+## Notes:
+Services are dependant
+
 ## HADOOP Paths:
 - Hadoop Home: `/opt/hadoop`
 - Distrubted Hadoop Home: `/yarn-conf/hadoop`
