@@ -6,6 +6,7 @@ Hadoop Yarn/HDFS inside a docker-compose manifest.
 - Start Containers: `docker-compose up -d`
 - Container Status: `docker-compose ps`
 - Stop and Delete Containers: `docker-compose rm -sf`
+- SSH into resourcemanager container: `docker-compose exec resourcemanager /bin/bash`
 
 ## Notes:
 Services are dependant
